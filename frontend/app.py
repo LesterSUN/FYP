@@ -2,6 +2,12 @@ import streamlit as st
 from utils.state import init_state, logout
 from utils.api import get_api_base
 
+import os, glob
+st.write("CWD:", os.getcwd())
+st.write("pages exists:", os.path.isdir("pages"))
+st.write("pages py files:", glob.glob("pages/*.py"))
+
+
 st.set_page_config(page_title="EMR Structuring System", layout="wide")
 init_state()
 

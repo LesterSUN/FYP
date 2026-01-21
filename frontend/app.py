@@ -1,26 +1,8 @@
-import os
 import streamlit as st
+from utils.state import init_state, logout
+from utils.api import get_api_base
 
 st.set_page_config(page_title="EMR Structuring System", layout="wide")
-
-# ---------- helpers ----------
-def get_api_base() -> str | None:
-    return st.secrets.get("API_BASE") or os.getenv("API_BASE")
-
-def init_state():
-    if "token" not in st.session_state:
-        st.session_state.token = None
-    if "role" not in st.session_state:
-        st.session_state.role = None
-    if "username" not in st.session_state:
-        st.session_state.username = None
-
-def logout():
-    st.session_state.token = None
-    st.session_state.role = None
-    st.session_state.username = None
-
-# ---------- UI ----------
 init_state()
 
 st.title("EMR Structuring System (Prototype)")
@@ -51,6 +33,7 @@ st.markdown(
 - **Login**：登录获取 token（写入 session）
 - **Doctor**：提交 EMR、查看 Records
 - **Admin**：查看 Audit Logs（仅 Admin）
-- **Settings**：健康检查 /Health、查看 API_BASE
+- **Settings**：健康检查 `/Health`、查看 API_BASE
 """
 )
+
